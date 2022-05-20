@@ -1,0 +1,60 @@
+#? USERS
+
+#* Get All users
+GET http://localhost:8000/users
+
+###
+
+#? REGISTER
+POST http://localhost:8000/register
+Content-Type: application/json
+
+{
+    "username": "zan2",
+    "password": "zan2",
+    "email": "zan2@gmail.com"
+}
+
+###
+
+#? LOGIN
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{ "username": "zan2", "password": "zan2" }
+
+###
+
+#? FLASHCARDS
+
+#* Get All Flashcards
+GET http://localhost:8000/flashcards
+
+###
+
+#* Create a Flashcard
+POST http://localhost:8000/flashcards
+Content-Type: application/json
+
+{
+    "author": "Eleni",
+    "front": "javascript",
+    "back": "an object-oriented computer programming language commonly used to create interactive effects within web browsers.",
+    "category": "programming"
+}
+
+###
+
+#* Update a flashcard
+PATCH http://localhost:8000/flashcards/
+Content-Type: application/json
+
+{
+    "author": "Eleni",
+    "front": "JS",
+    "back": "an object-oriented computer programming language commonly used to create interactive effects within web browsers.",
+    "category": "programming"
+}
+
+#* Delete a flashcard
+DELETE http://localhost:8000/flashcards/
