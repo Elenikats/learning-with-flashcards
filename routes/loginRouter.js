@@ -19,7 +19,7 @@ loginRouter
 
             console.log("hash:",findUserWithSameUsername.password);
 
-            // TODO: make the token expire when the user logs out
+            // TODO: make the token expire when the user logs out instead for after 1h.
             // * create token
             const payload = { userId: findUserWithSameUsername._id }
             const options = { expiresIn: "60m" }

@@ -10,9 +10,9 @@ POST http://localhost:8000/register
 Content-Type: application/json
 
 {
-    "username": "zan2",
-    "password": "zan2",
-    "email": "zan2@gmail.com"
+    "username": "Eleni",
+    "password": "agapi123",
+    "email": "eleni@gmail.com"
 }
 
 ###
@@ -21,9 +21,45 @@ Content-Type: application/json
 POST http://localhost:8000/login
 Content-Type: application/json
 
-{ "username": "zan2", "password": "zan2" }
+{ "username": "Eleni", "password": "agapi123" }
 
 ###
+
+#? CATEGORIES 
+
+#* Get All Categories
+GET http://localhost:8000/categories
+
+###
+
+#* Create a Category
+POST http://localhost:8000/categories
+Content-Type: application/json
+
+{
+    "author": "6289734814fe49c837aa8ee2",
+    "header": "web development"
+}
+
+###
+
+#* Update a category
+PATCH http://localhost:8000/categories/6289590c1c7ba225f4f9aaed
+Content-Type: application/json
+
+{
+    "header": "ellinika"
+}
+
+###
+
+#* Delete a category
+DELETE http://localhost:8000/categories/6289737314fe49c837aa8ee9
+
+###
+
+///////////////////////// * /////////////////////////
+
 
 #? FLASHCARDS
 
@@ -37,24 +73,23 @@ POST http://localhost:8000/flashcards
 Content-Type: application/json
 
 {
-    "author": "Eleni",
-    "front": "javascript",
-    "back": "an object-oriented computer programming language commonly used to create interactive effects within web browsers.",
-    "category": "programming"
+    "front": "Javascript",
+    "back": "Javascript (JS) is a scripting languages, primarily used on the Web.",
+    "category": "6289737314fe49c837aa8ee9"
 }
 
 ###
 
 #* Update a flashcard
-PATCH http://localhost:8000/flashcards/
+PATCH http://localhost:8000/flashcards/62895a2034b6da66f30af7f2
 Content-Type: application/json
 
 {
-    "author": "Eleni",
-    "front": "JS",
-    "back": "an object-oriented computer programming language commonly used to create interactive effects within web browsers.",
-    "category": "programming"
+    "front": "dromos",
+    "back": "street"
 }
 
+###
+
 #* Delete a flashcard
-DELETE http://localhost:8000/flashcards/
+DELETE http://localhost:8000/flashcards/6289700c9ef617f4f9658454

@@ -8,10 +8,9 @@ const unique = true;
 const trim = true;
 
 const flashcardSchema = new Schema({
-    author:     { type: Schema.Types.ObjectId, ref: "user", required },
+    category:   { type: Schema.Types.ObjectId, ref: "category", required },
     front:      { type: String, required, trim, unique },
     back:       { type: String, required, trim },
-    category:   { type: String, required, default: "random" }
 }, { timestamps })
 
 const Flashcard = model("flashcard", flashcardSchema);

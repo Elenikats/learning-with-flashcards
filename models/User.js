@@ -12,14 +12,13 @@ const userSchema = new Schema({
     username:       { type: String, required, trim, unique },
     email:          { type: String, required, trim, unique },
     password:       { type: String, required },
-    flashcards:     { type: [Schema.Types.ObjectId], ref: "flashcard" }  
+    categories:     { type: [Schema.Types.ObjectId], ref: "category" }  
 }, { timestamps })
 
-// This middleware function will run before a document is deleted, when someone calls "doc.remove()".
-// By default, like now it will NOT run when someone calls "User.remove()"
+
 userSchema.pre("remove", async function() {
     console.log("User is being removed" + this._id);
-    await Flashcard.deleteMany({ author: this.id })
+    await Flashcard.deleteMany({ author: this._id })
     await Category.deleteMany({ user: this._id })
 })
 

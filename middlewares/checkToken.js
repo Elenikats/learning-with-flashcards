@@ -1,4 +1,5 @@
 import dotenv from "dotenv"
+import createError from "http-errors";
 import jwt from "jsonwebtoken"
 import User from "../models/User"
 
@@ -9,13 +10,13 @@ const checkToken = (req, res, next) => {
     const tokenRaw = req.headers.authorization
     console.log(`TokenRaw is: ${tokenRaw}`);
     if (!tokenRaw) {
-        return res.status(401).send(error.message)
+        next(createError(401, error.message))
     }
 
     const tokenToCheck = tokenRaw.split(" ")[1]
     console.log(`Token to check is: ${tokenToCheck}`);
     if (!tokenToCheck) {
-        return res.status(401).send(error.message)
+        next(createError(401, error.message))
     }
 
     const secret = process.env.SECRET 
@@ -25,7 +26,7 @@ const checkToken = (req, res, next) => {
     jwt.verify(tokenToCheck, secret, (error, payload) => {
         console.log({ error, payload });
         if (error) {
-            return res.status(400).send(error.message)
+            next(createError(401, error.message))
         }
 
         // JWT:

@@ -2,6 +2,7 @@ import { hash } from "bcrypt";
 import express from "express";
 import createError from "http-errors";
 import User from "../models/User.js";
+import validateLogin from "../middlewares/validateLogin.js"
 
 const registerRouter = express.Router();
 
@@ -16,17 +17,6 @@ registerRouter
         } catch (error){
             next(createError(400, error.message))
         }
-
-
-        // try {
-        //     const newUser = await User.register(req.body)
-
-        //     if (newUser) {
-        //         return res.send(newUser)
-        //     }
-        // } catch (error){
-        //     next(createError(400, error.message))
-        // }
     })
 
 export default registerRouter

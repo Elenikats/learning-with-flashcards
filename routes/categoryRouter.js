@@ -4,18 +4,20 @@ import Flashcard from "../models/Flashcard.js";
 import User from "../models/User.js";
 import Category from "../models/Category.js";
 
-const flashcardRouter = express.Router()
+const categoryRouter = express.Router()
 
-flashcardRouter 
+categoryRouter 
     .get("/", async (req, res, next) => {
         try{
             // TODO: middleware: If user is logged in, continue...
 
-            const flashcards = Flashcard.find({});
-            flashcards.select("-__v");
-            flashcards.populate("category", "header");
-            const flashcardsAfterPopulation = await flashcards.exec();
-            res.send({flashcardsAfterPopulation});   
+            const categories = Category.find({});
+            categories.select("-__v");
+            categories.populate("author", "username");
+            categories.populate("flashcards", "front back");
+
+            const categoriesAfterPopulation = await categories.exec()
+            res.send({categoriesAfterPopulation})
 
         } catch (error){
             next(createError(400, error.message))
@@ -23,18 +25,16 @@ flashcardRouter
     })
     .post("/", async (req,res, next) => {
         try {
-            const category = await Category.findById(req.body.category)
-
-            // ? DO I NEED THIS? the category is required so probably not necessary.
-            if(!category) {
-                return next(createError(404, "Please create a category first!"))
+            const author = await User.findById(req.body.author)
+            if(!author) {
+                return next(createError(404, "There is no such a user!"))
             }
 
-            const createFlashcard = await Flashcard.create(req.body);
-            category.flashcards.push(createFlashcard._id)
-            await category.save()
+            const createCategory = await Category.create(req.body);
+            author.categories.push(createCategory._id)
+            await author.save()
 
-            res.send({ createFlashcard })
+            res.send({ createCategory })
 
         } catch (error) {
             next(createError(400, error.message))
@@ -42,16 +42,17 @@ flashcardRouter
     })
     .patch("/:id", async (req,res,next) => {
         try {
+            // ? is it needed?
             // const author = await User.findById(req.body.author)
             // if(!author) {
             //     return next(createError(404, "Please log in!"))
             // }
 
             const queryOptions = { new: true, runValidators: true }
-            const updateFlashcard = await Flashcard.findByIdAndUpdate(req.params.id, req.body, queryOptions)
+            const updateCategory = await Category.findByIdAndUpdate(req.params.id, req.body, queryOptions)
 
-            res.send({updateFlashcard})
-        } catch (error) {
+            res.send({updateCategory})
+        } catch (error){
             next(createError(400, error.message))
         }
     })
@@ -62,11 +63,11 @@ flashcardRouter
             //     return next(createError(404, "Please log in!"))
             // }
 
-            const removeFlashcard = await Flashcard.findByIdAndDelete(req.params.id)
-            res.send({removeFlashcard})
+            const removeCategory= await Category.findByIdAndDelete(req.params.id)
+            res.send({removeCategory})
         } catch (error){
             next(createError(400, error.message))
         }
     })
 
-export default flashcardRouter;
+export default categoryRouter;
