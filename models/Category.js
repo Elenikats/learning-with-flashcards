@@ -21,7 +21,7 @@ categorySchema.pre("remove", async function() {
     // We filter out the category that is being deleted by the user.categories
     const user = await User.findById(this.author);
     if (user) {
-        user.categories = user.categories.filter(category => category !== this._id)
+        user.categories = user.categories.filter(category => category.toString() !== this._id.toString())
     }
 
     // Flashcards are being deleted when this category is being deleted

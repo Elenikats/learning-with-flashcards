@@ -13,13 +13,13 @@ const userSchema = new Schema({
     email:          { type: String, required, trim, unique },
     password:       { type: String, required },
     categories:     { type: [Schema.Types.ObjectId], ref: "category" }  
-}, { timestamps })
+}, { timestamps})
 
 
 userSchema.pre("remove", async function() {
+    console.log("hiiii");
     console.log("User is being removed" + this._id);
-    await Flashcard.deleteMany({ author: this._id })
-    await Category.deleteMany({ user: this._id })
+    await Category.deleteMany({ author: this._id })
 })
 
 const User = model("user", userSchema);

@@ -4,8 +4,6 @@ import cors from "cors";
 import { connect } from "./lib/database.js";
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import flashcardRouter from "./routes/flashcardRouter.js";
-import registerRouter from "./routes/registerRouter.js";
-import loginRouter from "./routes/loginRouter.js";
 import userRouter from "./routes/userRouter.js"
 import categoryRouter from "./routes/categoryRouter.js"
 
@@ -16,14 +14,14 @@ app.use(cors());
 app.use(express.json());
 
 // router endpoints
-app.use("/register", registerRouter)
-app.use("/login", loginRouter)
 app.use("/users", userRouter)
 app.use("/categories", categoryRouter)
 app.use("/flashcards", flashcardRouter)
 
 
 
+
+app.use((req,res, next) => next({ status: 404, message: "Resource not found!" }))
 app.use(globalErrorHandler);
 
 app.listen(process.env.PORT, () => {

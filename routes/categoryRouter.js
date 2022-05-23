@@ -62,9 +62,9 @@ categoryRouter
             // if(!author) {
             //     return next(createError(404, "Please log in!"))
             // }
+            const category = await Category.findByIdAndDelete(req.params.id)
 
-            const removeCategory= await Category.findByIdAndDelete(req.params.id)
-            res.send({removeCategory})
+            res.send({ok: true, deleted: category})
         } catch (error){
             next(createError(400, error.message))
         }

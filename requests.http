@@ -5,20 +5,25 @@ GET http://localhost:8000/users
 
 ###
 
+#* Delete specific user
+DELETE http://localhost:8000/users/628bd15d6343efa6ae3878af
+
+###
+
 #? REGISTER
-POST http://localhost:8000/register
+POST http://localhost:8000/users/register
 Content-Type: application/json
 
 {
-    "username": "Eleni",
-    "password": "agapi123",
-    "email": "eleni@gmail.com"
+    "username": "anna haralas10",
+    "password": "ba",
+    "email": "annagmail.com"
 }
 
 ###
 
 #? LOGIN
-POST http://localhost:8000/login
+POST http://localhost:8000/users/login
 Content-Type: application/json
 
 { "username": "Eleni", "password": "agapi123" }
@@ -37,8 +42,8 @@ POST http://localhost:8000/categories
 Content-Type: application/json
 
 {
-    "author": "6289734814fe49c837aa8ee2",
-    "header": "web development"
+    "author": "628bd15d6343efa6ae3878af",
+    "header": "greek language 2"
 }
 
 ###
@@ -54,7 +59,7 @@ Content-Type: application/json
 ###
 
 #* Delete a category
-DELETE http://localhost:8000/categories/6289737314fe49c837aa8ee9
+DELETE http://localhost:8000/categories/628bd1696343efa6ae3878b2
 
 ###
 
@@ -73,9 +78,9 @@ POST http://localhost:8000/flashcards
 Content-Type: application/json
 
 {
-    "front": "Javascript",
-    "back": "Javascript (JS) is a scripting languages, primarily used on the Web.",
-    "category": "6289737314fe49c837aa8ee9"
+    "front": "geia sou",
+    "back": "hallo",
+    "category": "62898f4a1486bead9806e628"
 }
 
 ###
