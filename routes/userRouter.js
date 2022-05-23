@@ -3,9 +3,9 @@ import createError from "http-errors";
 import User from "../models/User.js";
 import { hash } from "bcrypt";
 import bcrypt from "bcrypt";
-// import { validateLogin } from "../middlewares/validateLogin.js"
 import jwt from "jsonwebtoken";
-import { body, validationResult } from "express-validator"
+// import { body, validationResult } from "express-validator"
+// import validateLogin from "../middlewares/validateLogin.js"
 
 const userRouter = express.Router();
 
@@ -20,11 +20,7 @@ userRouter
     })
 
     // registration
-    .post("/register",
-    // body("username").isLength({ min: 3}).withMessage("invalid-name"),
-    // body("email").isEmail().withMessage("invalid-email"),
-    // body("password").isLength({ min: 8 }).withMessage("password-too_short"),
-    async (req,res, next) => {
+    .post("/register", async (req,res, next) => {
     // TODO: validate the registration, if the data are correct | with Jay 
     try {
 
@@ -32,7 +28,7 @@ userRouter
         const createUser = await User.create(req.body)
 
         res.send({ createUser })
-    } catch (error){
+    } catch (error) {
         next(createError(400, error.message))
     }
     })

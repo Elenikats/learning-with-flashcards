@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import createError from "http-errors";
 import jwt from "jsonwebtoken"
-import User from "../models/User"
+import User from "../models/User.js"
 
 dotenv.config()
 

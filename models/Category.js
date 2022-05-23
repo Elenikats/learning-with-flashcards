@@ -16,6 +16,7 @@ const categorySchema = new Schema({
 
 
 categorySchema.pre("remove", async function() {
+    console.log("hi there i am deleting ");
     console.log("Category is being removed" + this._id);
 
     // We filter out the category that is being deleted by the user.categories
