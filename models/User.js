@@ -16,10 +16,12 @@ const userSchema = new Schema({
 }, { timestamps})
 
 
-userSchema.pre("remove", async function() {
+userSchema.pre("remove", function() {
     console.log("hiiii");
-    console.log("User is being removed" + this._id);
-    await Category.deleteMany({ author: this._id })
+    console.log("User is being removed", this);
+    const query = Category.deleteMany({ author: this._id })
+    query.exec()
+        .then(console.log)
 })
 
 const User = model("user", userSchema);

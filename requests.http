@@ -6,7 +6,7 @@ GET http://localhost:8000/users
 ###
 
 #* Delete specific user
-DELETE http://localhost:8000/users/628bd68e171ba3b46f865819
+DELETE http://localhost:8000/users/628ca3473de8855266ca29cf
 
 ###
 
@@ -17,16 +17,17 @@ Content-Type: application/json
 {
     "username": "eleni",
     "password": "banana12",
-    "email": "elenigmail.com"
+    "email": "eleni@gmail.com"
 }
 
 ###
 
 #? LOGIN
+#! Doesnt check password
 POST http://localhost:8000/users/login
 Content-Type: application/json
 
-{ "username": "eleni", "password": "banana12" }
+{ "email": "eleni@gmail.com", "password": "banana" }
 
 ###
 
@@ -34,18 +35,17 @@ Content-Type: application/json
 
 #* Get All Categories
 GET http://localhost:8000/categories
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhiZjBiMWYwZjA2NDI0OTA0MjMzYzgiLCJpYXQiOjE2NTMzMzg1NjMsImV4cCI6MTY1MzM0MjE2M30.wL-SYwCtknYRah3watyXdSKi63nYY6EKBUOqrKAu8yg
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhjOGVlYTFhMDg4ZGU3MGQwNzk1MmQiLCJpYXQiOjE2NTMzNzg3OTksImV4cCI6MTY1MzM4MjM5OX0.ykLfAQ78WL8A_9qqSvDvJOyvT3XMqcIVVPCFOwoOHbM
 ###
 
 #* Create a Category
 POST http://localhost:8000/categories
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhiZjBiMWYwZjA2NDI0OTA0MjMzYzgiLCJpYXQiOjE2NTMzMzg1NjMsImV4cCI6MTY1MzM0MjE2M30.wL-SYwCtknYRah3watyXdSKi63nYY6EKBUOqrKAu8yg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhjYTM0NzNkZTg4NTUyNjZjYTI5Y2YiLCJpYXQiOjE2NTMzODQwMDksImV4cCI6MTY1MzQwMjAwOX0.ERj-A_K0aRil86mYxaijqKq76zo5Cm3QLcQz19zJPpY
 
-{
-    "author": "628bf0b1f0f06424904233c8",
-    "header": "greek language 2"
+{   
+    "author": "628ca3473de8855266ca29cf",
+    "header": "german lang"
 }
 
 ###
@@ -62,8 +62,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhiZ
 ###
 
 #* Delete a category
-DELETE http://localhost:8000/categories/628bf260c893b240a312dc08
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhiZjBiMWYwZjA2NDI0OTA0MjMzYzgiLCJpYXQiOjE2NTMzMzg1NjMsImV4cCI6MTY1MzM0MjE2M30.wL-SYwCtknYRah3watyXdSKi63nYY6EKBUOqrKAu8yg
+DELETE http://localhost:8000/categories/628ca3c63de8855266ca29d7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhjYTM0NzNkZTg4NTUyNjZjYTI5Y2YiLCJpYXQiOjE2NTMzODQwMDksImV4cCI6MTY1MzQwMjAwOX0.ERj-A_K0aRil86mYxaijqKq76zo5Cm3QLcQz19zJPpY
 
 ###
 
@@ -74,19 +74,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhiZ
 
 #* Get All Flashcards
 GET http://localhost:8000/flashcards
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhiZjBiMWYwZjA2NDI0OTA0MjMzYzgiLCJpYXQiOjE2NTMzMzg1NjMsImV4cCI6MTY1MzM0MjE2M30.wL-SYwCtknYRah3watyXdSKi63nYY6EKBUOqrKAu8yg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhjYTM0NzNkZTg4NTUyNjZjYTI5Y2YiLCJpYXQiOjE2NTMzODQwMDksImV4cCI6MTY1MzQwMjAwOX0.ERj-A_K0aRil86mYxaijqKq76zo5Cm3QLcQz19zJPpY
 
 ###
 
 #* Create a Flashcard
 POST http://localhost:8000/flashcards
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhiZjBiMWYwZjA2NDI0OTA0MjMzYzgiLCJpYXQiOjE2NTMzMzg1NjMsImV4cCI6MTY1MzM0MjE2M30.wL-SYwCtknYRah3watyXdSKi63nYY6EKBUOqrKAu8yg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjhjYTM0NzNkZTg4NTUyNjZjYTI5Y2YiLCJpYXQiOjE2NTMzODQwMDksImV4cCI6MTY1MzQwMjAwOX0.ERj-A_K0aRil86mYxaijqKq76zo5Cm3QLcQz19zJPpY
 
 {
     "front": "geia sou",
     "back": "hallo",
-    "category": "628bf260c893b240a312dc08"
+    "category": "628ca3c63de8855266ca29d7"
 }
 
 ###

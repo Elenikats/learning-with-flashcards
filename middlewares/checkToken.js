@@ -35,10 +35,14 @@ const checkToken = (req, res, next) => {
 
         User.findById(payload.userId)
             .then(user => {
+                console.log("user",user);
+                if (!user) {
+                    return res.status(401).send("Access denied")
+                }
                 req.userData = {
                     userId: user._id,
                     username: user.username,
-                    email: user.email
+                    email: user.email,
                 }
                 next()
             })
