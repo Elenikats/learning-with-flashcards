@@ -25,12 +25,12 @@ categoryRouter
     })
     .post("/", async (req,res, next) => {
         try {
-            const author = await User.findById(req.body.author)
+            const author = await User.findById(req.userData.userId)
             if(!author) {
                 return next(createError(404, "There is no such a user!"))
             }
 
-            const createCategory = await Category.create(req.body);
+            const createCategory = await Category.create({author: req.userData.userId , header: req.body.header});
             author.categories.push(createCategory._id)
             await author.save()
 

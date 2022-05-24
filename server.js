@@ -43,17 +43,7 @@ app.listen(process.env.PORT, () => {
 
 
 
-// TODO 1. cleanup database:
 
-// TODO user: 
-// * - when a user is deleted: - delete category and flashcards too
-// TODO category: 
-// TODO 
-// * - when a category is deleted: delete flashcards too    
-
-// ! cleanup doesn't work
+// ! When there is an expired JSONWEBTOKEN or a wrong one the server crashes
 
 
-//TODO 2.  FIX REGISTRATION ERROR
-
-// TODO 3. FIX VALIDATION

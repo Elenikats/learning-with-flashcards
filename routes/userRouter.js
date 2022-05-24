@@ -38,17 +38,15 @@ userRouter
         console.log("password from login:", password);
         try {
             const findUserWithSameEmail = await User.findOne({ email })
-            await bcrypt.compare(findUserWithSameEmail.password, password)
-
-            // ! It doesn't check when a password is wrong
-            // if (findUserWithSameEmail.password != password) {
-            //     console.log("not same password");
-            //     return next(createError(400, "Wrong password, please try again"))
-            // }
+            const success = await bcrypt.compare(password, findUserWithSameEmail.password)
+            console.log("success: ", success);
+            if (!success) {
+                return next(createError(400, "Wrong password, please try again"))
+            }
 
             console.log("hash:",findUserWithSameEmail.password);
 
-            // TODO: make the token expire when the user logs out instead for after 1h.
+            // TODO: make the token expire after 5min and then resend one automatically.
             // * create token
             const payload = { userId: findUserWithSameEmail._id }
             const options = { expiresIn: "300m" }

@@ -50,7 +50,7 @@ flashcardRouter
             const queryOptions = { new: true, runValidators: true }
             const updateFlashcard = await Flashcard.findByIdAndUpdate(req.params.id, req.body, queryOptions)
 
-            res.send({updateFlashcard})
+            res.send({updated: updateFlashcard})
         } catch (error) {
             next(createError(400, error.message))
         }
@@ -62,8 +62,9 @@ flashcardRouter
             //     return next(createError(404, "Please log in!"))
             // }
 
-            const removeFlashcard = await Flashcard.findByIdAndDelete(req.params.id)
-            res.send({removeFlashcard})
+            const flashcard = await Flashcard.findById(req.params.id)
+            await flashcard.remove()
+            res.send({ok: true, deleted: flashcard})
         } catch (error){
             next(createError(400, error.message))
         }
